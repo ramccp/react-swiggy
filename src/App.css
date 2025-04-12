@@ -1,4 +1,4 @@
-*{
+/* *{
   margin: 0;
   padding: 0;
 }
@@ -13,7 +13,7 @@
 
 .card{
   width: 275px;
-  /* border: 1px solid black; */
+  border: 1px solid black;
   overflow: hidden;
 
 }
@@ -22,7 +22,7 @@
   height: 182px;
   object-fit: cover;
   border-radius: 20px;
-  /* object-position: top; */
+  object-position: top;
 }
 #btns{
   width: 80%;
@@ -76,9 +76,7 @@
   gap: 10px;
 }
 
-
-
 .filter-btn,.clear-btn,.search-input{
   padding: 8px 15px;
   margin: 15px;
-}
+} */

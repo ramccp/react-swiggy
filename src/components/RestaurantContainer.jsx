@@ -35,15 +35,15 @@ const RestaurantContainer = () => {
 
   return (
     <div>
-    <div id="btns">
-      <button onClick={filterRestaurants} className="filter-btn">Filter</button>
-      <button onClick={clearFilter} className="clear-btn">Clear</button>
+    <div id="btns" className="w-10/12 mx-auto mt-4">
+      <button onClick={filterRestaurants} className="filter-btn bg-green-300 py-2 px-6 rounded-md hover:cursor-pointer">Filter</button>
+      <button onClick={clearFilter} className="clear-btn bg-red-600 text-white py-2 px-6 mx-4 rounded-md hover:cursor-pointer hover:bg-red-500">Clear</button>
       {/* <input type="text" placeholder="Search" className="search-input" onChange={(e)=>setQuery(e.target.value)} value={query} /> */}
-      <input type="text" placeholder="Search" className="search-input" ref={searchRef} />
-      <input type="button" value={"Search"} onClick={()=>console.log(searchRef.current.value)}  />
+      <input type="text" placeholder="Search" ref={searchRef} className="bg-slate-100 placeholder:text-black text-black outline-none py-2 px-6 mx-4 rounded-md" />
+      <input type="button" value={"Search"} onClick={()=>console.log(searchRef.current.value)} className="bg-amber-600 text-white py-2 px-6 mx-4 rounded-md hover:cursor-pointer"  />
       <span>{status?"🟢":"🔴"}</span>
     </div>
-    <div className="res-container">
+    <div className="res-container flex flex-wrap gap-4 w-10/12 mx-auto mt-10">
       {filteredData.length===0?<Shimmer/>:filteredData.map((obj) => {
         return <RestaurantCard {...obj.info} />;
       })}
