@@ -5,7 +5,7 @@ import useRestaurantMenu from "./useRestaurantMenu";
 function RestaurantInfo() {
   // const {id} = useParams();
   const {id} = useParams();
-  const resInfo = useRestaurantMenu(id);
+  const [resInfo,resMenu] = useRestaurantMenu(id);
   console.log(resInfo)
   return (
     <>
@@ -18,6 +18,14 @@ function RestaurantInfo() {
       ) : (
         <h1 className="text-2xl w-10/12 mx-auto">Loading...</h1>
       )}
+      {
+        resMenu && resMenu.map(item=><div className="w-10/12 mx-auto border-b-4 p-4 border-b-gray-500 font-bold">
+          {item.card.card.title} ({item.card.card.itemCards.length})
+          <div>
+          {item.card.card.itemCards.map(item=>{return <p>{item.card.info.name}</p>})}
+          </div>
+          </div>)
+      }
     </>
   );
 }
