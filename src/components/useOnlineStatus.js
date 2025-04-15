@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 function useOnlineStatus() {
   const [status, setStatus] = useState(true);
   window.addEventListener("online", () => {
@@ -11,8 +11,3 @@ function useOnlineStatus() {
 }
 
 export default useOnlineStatus;
-
-
-function useRestaurantCards(){
-    
-}
