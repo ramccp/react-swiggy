@@ -2,9 +2,10 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import { Outlet } from 'react-router'
+import { useState } from 'react'
 
 function App() {
-
+  const [count,setCount] = useState(0);
   return (
     <>
     <Navbar/>

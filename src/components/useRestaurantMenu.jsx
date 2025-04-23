@@ -1,20 +1,31 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { MENU_URL } from "../utils/constants";
-function useRestaurantMenu(id){
-    const [resInfo, setResInfo] = useState(null);
-    const [resMenu,setResMenu] = useState(null);
-    useEffect(()=>{
-        fetch(MENU_URL+id)
+function useRestaurantMenu(id) {
+  const [resInfo, setResInfo] = useState(null);
+  const [resMenu, setResMenu] = useState(null);
+  useEffect(() => {
+    fetch(MENU_URL + id)
       .then((res) => res.json())
-      .then((data) => {
-        setResInfo(data.data.cards[2].card.card.info)
-        let x = data.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards;
-        x = x.filter(obj=>obj.card?.card["@type"]?.includes('food.v2.ItemCategory'))
-        console.log(x);
-        setResMenu(x);
-    });
-    },[])
-    return [resInfo,resMenu];
+      .then((jsonData) => {
+        setResInfo(jsonData.data.cards[2].card.card.info);
+        const filteredCards =
+          jsonData.data?.cards
+            ?.filter((card) => "groupedCard" in card)[0]
+            ?.groupedCard.cardGroupMap.REGULAR.cards.filter(
+              (obj) =>
+                obj.card.card["@type"].includes("v2.ItemCategory") ||
+                obj.card.card["@type"].includes("v2.NestedItemCategory")
+            ) || [];
+        console.log(filteredCards);
+        // let x = data.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards;
+        // x = x.filter((obj) =>
+        //   obj.card?.card["@type"]?.includes("food.v2.ItemCategory")
+        // );
+        // console.log(x);
+        setResMenu(filteredCards);
+      });
+  }, []);
+  return [resInfo, resMenu];
 }
 
 export default useRestaurantMenu;
