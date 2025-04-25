@@ -17,4 +17,13 @@ function RestaurantCard({name,avgRating,cloudinaryImageId,locality,sla,cuisines}
     );
   }
 
+  function RestaurantCardWithBadge(Card){
+    return (props)=>{
+      return <div>
+        <label>VEG</label>
+        <Card {...props}/>
+      </div>
+    }
+  }
+  export {RestaurantCardWithBadge};
   export default RestaurantCard;

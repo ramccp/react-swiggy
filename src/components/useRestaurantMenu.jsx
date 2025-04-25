@@ -17,11 +17,6 @@ function useRestaurantMenu(id) {
                 obj.card.card["@type"].includes("v2.NestedItemCategory")
             ) || [];
         console.log(filteredCards);
-        // let x = data.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards;
-        // x = x.filter((obj) =>
-        //   obj.card?.card["@type"]?.includes("food.v2.ItemCategory")
-        // );
-        // console.log(x);
         setResMenu(filteredCards);
       });
   }, []);

@@ -1,16 +1,23 @@
-import { useState } from "react";
 import { MENU_IMG_URL } from "../utils/constants";
-function RestaurantMenu({ res }) {
-  const [isOpen, setIsOpen] = useState(true);
+function RestaurantMenu({ isOpen,setIsOpen,res }) {
+  
   return (
     <div className="w-9/12 mx-auto border-b-4 p-4 border-b-gray-500">
       <div className="flex justify-between">
         <h1 className="font-bold px-6 text-2xl">
           {res.title} ({res.itemCards.length})
         </h1>
-        <p onClick={()=>setIsOpen(!isOpen)} className="pr-4">{isOpen?"🔼":"🔽"}</p>
+        <p onClick={()=>{
+          if(res.title===isOpen){
+            setIsOpen("")
+          }
+          else{
+
+            setIsOpen(res.title)
+          }
+        }} className="pr-4">{isOpen===res.title?"🔼":"🔽"}</p>
       </div>
-      {isOpen && res.itemCards.map((obj) => (
+      {isOpen===res.title && res.itemCards.map((obj) => (
         <div className="border-b-1 border-b-gray-300 flex mt-1 p-3 items-center justify-between">
           <div className="flex-grow-1 w-9/12 p-6">
             <h1 className="font-bold text-gray-700">{obj.card.info.name}</h1>

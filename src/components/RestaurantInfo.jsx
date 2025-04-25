@@ -1,11 +1,12 @@
 import { useParams } from "react-router";
-
+import { useState } from "react";
 import useRestaurantMenu from "./useRestaurantMenu";
 import RestaurantMenu from "./RestaurantMenu";
 
 function RestaurantInfo() {
   const { id } = useParams();
   const [resInfo, resMenu] = useRestaurantMenu(id);
+  const [isOpen, setIsOpen] = useState("Recommended");
   return (
     <>
       {resInfo ? (
@@ -28,13 +29,14 @@ function RestaurantInfo() {
                 <h1 className="m-3 text-xl">{card.title}</h1>
                 {card.categories.map((item) => {
                   return (
-                    <RestaurantMenu res={item}/>
+                    <RestaurantMenu key={item.card.card.categoryId} isOpen={isOpen} setIsOpen={setIsOpen} res={item}/>
                   );
                 })}
               </div>
             );
           } else {
-            return <RestaurantMenu res={card}/>
+            console.log(card)
+            return <RestaurantMenu key={card.categoryId} isOpen={isOpen} setIsOpen={setIsOpen} res={card}/>
           }
         })}
     </>

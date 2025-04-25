@@ -46,8 +46,6 @@ const Shimmer = () => {
           <p className="location shimmer-line"></p>
         </div>
       </div>
-      
-      
     </div>
   );
 };
