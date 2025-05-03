@@ -1,6 +1,10 @@
 import { MENU_IMG_URL } from "../utils/constants";
+import { addItem,removeItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
+
 function RestaurantMenu({ isOpen,setIsOpen,res }) {
-  
+  const dispatch = useDispatch();
+
   return (
     <div className="w-9/12 mx-auto border-b-4 p-4 border-b-gray-500">
       <div className="flex justify-between">
@@ -36,7 +40,7 @@ function RestaurantMenu({ isOpen,setIsOpen,res }) {
               src={MENU_IMG_URL + obj.card.info.imageId}
               alt=""
             />
-            <button className="absolute -bottom-2 left-8 bg-black text-white text-lg rounded-md px-7 py-1">
+            <button onClick={()=>dispatch(addItem(obj))} className="absolute -bottom-2 left-8 bg-black text-white text-lg rounded-md px-7 py-1">
               Add
             </button>
           </div>

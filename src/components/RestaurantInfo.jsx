@@ -28,14 +28,15 @@ function RestaurantInfo() {
               <div>
                 <h1 className="m-3 text-xl">{card.title}</h1>
                 {card.categories.map((item) => {
+                  console.log("NEW",item)
                   return (
-                    <RestaurantMenu key={item.card.card.categoryId} isOpen={isOpen} setIsOpen={setIsOpen} res={item}/>
+                    <RestaurantMenu key={item.card?.card?.categoryId ?? item.categoryId} isOpen={isOpen} setIsOpen={setIsOpen} res={item}/>
                   );
                 })}
               </div>
             );
           } else {
-            console.log(card)
+            console.log("OLD",card)
             return <RestaurantMenu key={card.categoryId} isOpen={isOpen} setIsOpen={setIsOpen} res={card}/>
           }
         })}
